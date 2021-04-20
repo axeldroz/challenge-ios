@@ -10,19 +10,21 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     weak var coordinator: MainCoordinator?
+    var viewModel: FeedViewModelProtocol
     
-    let button: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("LOGOUT", for: .normal)
-        return button
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
     }()
     
-    init() {
+    init(viewModel: FeedViewModelProtocol = FeedViewModel()) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
+        self.viewModel = FeedViewModel()
         super.init(coder: coder)
     }
     
@@ -30,21 +32,33 @@ final class FeedViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemRed
         configureUI()
+        bindViewModel()
         fetchData()
     }
     
     private func configureUI() {
-        configureButton()
+        configureNavigationBar()
+        configureTableViewUI()
+        configureTableView()
     }
     
-    private func configureButton() {
-        view.addSubview(button)
-        button.widthAnchor.constraint(equalToConstant: 120.0).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
-        button.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        
-        button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
+    private func configureNavigationBar() {
+        let logoutButton = UIBarButtonItem(title: "logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(buttonPressed(_:)))
+        navigationItem.rightBarButtonItem = logoutButton
+    }
+    
+    private func configureTableView() {
+        tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: "FeedTableViewCell")
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    private func configureTableViewUI() {
+        view.addSubview(tableView)
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
     
     @objc func buttonPressed(_ sender: Any?) {
@@ -52,21 +66,31 @@ final class FeedViewController: UIViewController {
     }
     
     func fetchData() {
-        let request = GetBankListRequest(clientId: "dd6696c38b5148059ad9dedb408d6c84", clientSecret: "56uolm946ktmLTqNMIvfMth4kdiHpiQ5Yo8lT4AFR0aLRZxkxQWaGhLDHXeda6DZ")
-        BankApiClient.shared.send(request) { (result) in
-            switch result {
-            case .success(let response):
-                response.resources.forEach { (res) in
-                    res.parentBanks.forEach { (bankParent) in
-                        print("bankParent: ", bankParent.name)
-                    }
-                }
-            break
-                
-            case .failure(let error):
-                print("error: " + error.localizedDescription)
-            break
-            }
+        viewModel.fetch()
+    }
+    
+    private func bindViewModel() {
+        viewModel.onDataUpdated = { [weak self] in
+            print("UPDATE !!!!!!")
+            self?.tableView.reloadData()
         }
+    }
+}
+
+extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.banks.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell") as? FeedTableViewCell else {
+            return UITableViewCell()
+        }
+        let row = indexPath.row
+        guard row < viewModel.banks.count else { return UITableViewCell() }
+        
+        let vm = viewModel.banks[row]
+        cell.setData(viewModel: vm)
+        return cell
     }
 }
