@@ -1,0 +1,6 @@
+framework module Pods_bankin_challenge_ios_bankin_challenge_iosUITests {
+  umbrella header "Pods-bankin-challenge-ios-bankin-challenge-iosUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
