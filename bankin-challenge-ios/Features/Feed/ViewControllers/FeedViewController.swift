@@ -30,6 +30,7 @@ final class FeedViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemRed
         configureUI()
+        fetchData()
     }
     
     private func configureUI() {
@@ -48,5 +49,24 @@ final class FeedViewController: UIViewController {
     
     @objc func buttonPressed(_ sender: Any?) {
         coordinator?.logout()
+    }
+    
+    func fetchData() {
+        let request = GetBankListRequest(clientId: "dd6696c38b5148059ad9dedb408d6c84", clientSecret: "56uolm946ktmLTqNMIvfMth4kdiHpiQ5Yo8lT4AFR0aLRZxkxQWaGhLDHXeda6DZ")
+        BankApiClient.shared.send(request) { (result) in
+            switch result {
+            case .success(let response):
+                response.resources.forEach { (res) in
+                    res.parentBanks.forEach { (bankParent) in
+                        print("bankParent: ", bankParent.name)
+                    }
+                }
+            break
+                
+            case .failure(let error):
+                print("error: " + error.localizedDescription)
+            break
+            }
+        }
     }
 }

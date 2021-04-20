@@ -10,6 +10,12 @@
 		0217574C01D64B97890426E8 /* Pods_bankin_challenge_ios_bankin_challenge_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9D568CE5C574E27E0CCB34 /* Pods_bankin_challenge_ios_bankin_challenge_iosUITests.framework */; };
 		2E05BB51262F3045004180CC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB50262F3045004180CC /* LoginViewController.swift */; };
 		2E05BB59262F3270004180CC /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB58262F3270004180CC /* FeedViewController.swift */; };
+		2E05BB6E262F4289004180CC /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB6D262F4289004180CC /* ApiClient.swift */; };
+		2E05BB73262F42CB004180CC /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB72262F42CB004180CC /* ApiRequest.swift */; };
+		2E05BB78262F42FB004180CC /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB77262F42FB004180CC /* ApiResponse.swift */; };
+		2E05BB7E262F4471004180CC /* GetBankListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB7D262F4471004180CC /* GetBankListRequest.swift */; };
+		2E05BB86262F4615004180CC /* BankApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB85262F4615004180CC /* BankApiClient.swift */; };
+		2E05BB97262F4E52004180CC /* BankListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB96262F4E52004180CC /* BankListModel.swift */; };
 		2E7DB8BD262F239000EE9054 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB8BC262F239000EE9054 /* AppDelegate.swift */; };
 		2E7DB8BF262F239000EE9054 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB8BE262F239000EE9054 /* SceneDelegate.swift */; };
 		2E7DB8C4262F239000EE9054 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DB8C2262F239000EE9054 /* Main.storyboard */; };
@@ -44,6 +50,12 @@
 		2A9D568CE5C574E27E0CCB34 /* Pods_bankin_challenge_ios_bankin_challenge_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bankin_challenge_ios_bankin_challenge_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E05BB50262F3045004180CC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2E05BB58262F3270004180CC /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		2E05BB6D262F4289004180CC /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		2E05BB72262F42CB004180CC /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
+		2E05BB77262F42FB004180CC /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
+		2E05BB7D262F4471004180CC /* GetBankListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBankListRequest.swift; sourceTree = "<group>"; };
+		2E05BB85262F4615004180CC /* BankApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankApiClient.swift; sourceTree = "<group>"; };
+		2E05BB96262F4E52004180CC /* BankListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankListModel.swift; sourceTree = "<group>"; };
 		2E7DB8B9262F239000EE9054 /* bankin-challenge-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bankin-challenge-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7DB8BC262F239000EE9054 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E7DB8BE262F239000EE9054 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +109,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E05BB7C262F4370004180CC /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				2E05BB7D262F4471004180CC /* GetBankListRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		2E05BB8D262F48E2004180CC /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				2E05BB95262F4BFF004180CC /* Models */,
+				2E05BB7C262F4370004180CC /* Requests */,
+				2E05BB77262F42FB004180CC /* ApiResponse.swift */,
+				2E05BB72262F42CB004180CC /* ApiRequest.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		2E05BB91262F4910004180CC /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				2E05BB6D262F4289004180CC /* ApiClient.swift */,
+				2E05BB85262F4615004180CC /* BankApiClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		2E05BB95262F4BFF004180CC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2E05BB96262F4E52004180CC /* BankListModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		2E7DB8B0262F239000EE9054 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +223,8 @@
 		2E7DB8F1262F23BF00EE9054 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				2E05BB8D262F48E2004180CC /* Api */,
+				2E05BB91262F4910004180CC /* Client */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -528,11 +578,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E05BB6E262F4289004180CC /* ApiClient.swift in Sources */,
 				2E05BB51262F3045004180CC /* LoginViewController.swift in Sources */,
+				2E05BB86262F4615004180CC /* BankApiClient.swift in Sources */,
+				2E05BB97262F4E52004180CC /* BankListModel.swift in Sources */,
 				2EDBF63A262F2A4E0045AD07 /* MainCoordinator.swift in Sources */,
 				2E7DB8BD262F239000EE9054 /* AppDelegate.swift in Sources */,
+				2E05BB7E262F4471004180CC /* GetBankListRequest.swift in Sources */,
 				2EDBF635262F29EF0045AD07 /* Coordinator.swift in Sources */,
 				2E7DB8BF262F239000EE9054 /* SceneDelegate.swift in Sources */,
+				2E05BB78262F42FB004180CC /* ApiResponse.swift in Sources */,
+				2E05BB73262F42CB004180CC /* ApiRequest.swift in Sources */,
 				2E05BB59262F3270004180CC /* FeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
