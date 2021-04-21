@@ -137,52 +137,9 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.setData(viewModel: vm)
         return cell
     }
-}
-
-extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.banks[section].count
-    }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.parentBanks.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 75
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ParentBankTableViewHeader") as? ParentBankTableViewHeader else {
-            return nil
-        }
-        guard section < viewModel.parentBanks.count else { return nil }
-        
-        let vm = viewModel.parentBanks[section]
-        view.setData(viewModel: vm)
-        return view
-    }
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return viewModel.parentBanks[section].name
-//    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BankTableViewCell") as? BankTableViewCell else {
-            return UITableViewCell()
-        }
-        let section = indexPath.section
-        let row = indexPath.row
-        guard section < viewModel.banks.count else { return UITableViewCell() }
-        guard row < viewModel.banks[section].count else { return UITableViewCell() }
-        
-        let vm = viewModel.banks[section][row]
-        cell.setData(viewModel: vm)
-        return cell
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        coordinator?.showSubBanks(subBanks: viewModel.banks[indexPath.item])
     }
 }
 

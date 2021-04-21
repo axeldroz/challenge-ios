@@ -41,4 +41,11 @@ final class MainCoordinator: Coordinator {
             navigationController.viewControllers = [viewController]
         }
     }
+    
+    func showSubBanks(subBanks: [BankCellViewModel]) {
+        guard navigationController.topViewController is FeedViewController else { return }
+        let viewModel = SubBanksViewModel(banks: subBanks)
+        let subBankViewController = SubBanksViewController(viewModel: viewModel)
+        navigationController.present(subBankViewController, animated: true, completion: nil)
+    }
 }
