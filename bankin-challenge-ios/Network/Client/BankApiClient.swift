@@ -35,7 +35,8 @@ final class BankApiClient: ApiClient {
                             decoder.keyDecodingStrategy = .convertFromSnakeCase
                             let result = try decoder.decode(T.Response.self, from: data)
                             completion(.success(result) )
-                        } catch let _ {
+                        } catch let errorResponse {
+                            print("error: \(errorResponse.localizedDescription)")
                             completion(.failure(AFError.ResponseValidationFailureReason.missingContentType as! T.ErrorType))
                         }
                     break

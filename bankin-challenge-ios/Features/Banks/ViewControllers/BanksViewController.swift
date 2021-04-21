@@ -13,9 +13,10 @@ final class BanksViewController: UIViewController {
     weak var coordinator: MainCoordinator?
     var viewModel: BanksViewModelProtocol
     
-    var currentCountry: Country = .france {
+    var currentCountry: Country = .FR {
         didSet {
             switchCountryButton.currentCountry = self.currentCountry
+            collectionView.reloadData()
         }
     }
     
@@ -26,16 +27,10 @@ final class BanksViewController: UIViewController {
     }()
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
-    @objc let switchCountryButton: SwitchCountryButton = {
+    let switchCountryButton: SwitchCountryButton = {
         let button = SwitchCountryButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
-    }()
-    
-    let countrySelectionView: CountrySelectionView = {
-        let view = CountrySelectionView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
     }()
     
     init(viewModel: BanksViewModelProtocol = BanksViewModel()) {
@@ -153,7 +148,7 @@ final class BanksViewController: UIViewController {
 
 extension BanksViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.parentBanks.count
+        return viewModel.parentBanks.filter{ $0.countryCode == currentCountry }.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -177,15 +172,17 @@ extension BanksViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return UICollectionViewCell()
         }
         let row = indexPath.row
-        guard row < viewModel.parentBanks.count else { return UICollectionViewCell() }
+        let viewModels = viewModel.parentBanks.filter{ $0.countryCode == currentCountry }
+        guard row < viewModels.count else { return UICollectionViewCell() }
         
-        let vm = viewModel.parentBanks[row]
+        let vm = viewModels[row]
         cell.setData(viewModel: vm)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        coordinator?.showSubBanks(subBanks: viewModel.banks[indexPath.item])
+        let viewModels = viewModel.banks.filter{ $0.first?.countryCode ?? .FR == currentCountry }
+        coordinator?.showSubBanks(subBanks: viewModels[indexPath.item])
     }
 }
 

@@ -31,7 +31,7 @@ struct BankModel: Decodable {
     let resourceType: String
     let name: String
     let parentName: String?
-    let countryCode: String
+    let countryCode: Country
     let automaticRefresh: Bool
     let primaryColor: String?
     let secondaryColor: String?

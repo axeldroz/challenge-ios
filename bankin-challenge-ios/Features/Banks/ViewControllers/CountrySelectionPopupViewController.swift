@@ -30,7 +30,7 @@ final class CountrySelectionPopupViewController: UIViewController {
         return button
     }()
     
-    let data: [Country] = [.france, .usa, .uk, .spain, .germany, .netherlands, .others]
+    let data: [Country] = [.FR, .GB, .ES, .DE, .NL]
     
     override func viewDidLoad() {
         super.viewDidLoad()

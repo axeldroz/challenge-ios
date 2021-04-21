@@ -11,9 +11,11 @@ import Foundation
 class ParentBankCellViewModel {
     let name: String
     let logoUrl: String?
+    let countryCode: Country
     
     init(model: ParentBankModel) {
         self.name = model.name
         self.logoUrl = model.logoUrl
+        self.countryCode = model.banks.first?.countryCode ?? .FR
     }
 }

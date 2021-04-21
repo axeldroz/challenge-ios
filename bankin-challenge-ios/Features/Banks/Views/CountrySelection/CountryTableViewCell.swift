@@ -22,9 +22,9 @@ class CountryTableViewCell: UITableViewCell {
     }
 
     func setData(model: Country) {
-        let imageName = ("ic_flag_" + model.rawValue).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
+        let imageName = ("ic_flag_" + model.toFullName()).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
         imageView?.image = UIImage(named: imageName)
-        textLabel?.text = model.rawValue.capitalized
+        textLabel?.text = model.toFullName().capitalized
     }
 
 }

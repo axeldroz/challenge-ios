@@ -24,10 +24,9 @@
 		2E2C02CB26307FBF00EDE547 /* SubBanksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C02CA26307FBF00EDE547 /* SubBanksViewModel.swift */; };
 		2E2C02D226307FF300EDE547 /* SubBankCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C02D126307FF300EDE547 /* SubBankCellViewModel.swift */; };
 		2E2C02F3263093F800EDE547 /* SwitchCountryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C02F2263093F800EDE547 /* SwitchCountryButton.swift */; };
-		2E2C02FB2630A1A500EDE547 /* CountrySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C02FA2630A1A400EDE547 /* CountrySelectionView.swift */; };
-		2E2C03032630A63600EDE547 /* CountryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C03022630A63600EDE547 /* CountryButton.swift */; };
 		2E2C03082630ACC800EDE547 /* CountrySelectionPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C03072630ACC800EDE547 /* CountrySelectionPopupViewController.swift */; };
 		2E2C030E2630AF9600EDE547 /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C030D2630AF9600EDE547 /* CountryTableViewCell.swift */; };
+		2E2C03172630C21A00EDE547 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C03162630C21A00EDE547 /* Country.swift */; };
 		2E346B05263015B300EAA5A4 /* ParentBankCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E346B04263015B300EAA5A4 /* ParentBankCellViewModel.swift */; };
 		2E3C467326302E9E00504C5E /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C467226302E9E00504C5E /* Images.swift */; };
 		2E3C467826302FDD00504C5E /* ParentBankTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */; };
@@ -80,10 +79,9 @@
 		2E2C02CA26307FBF00EDE547 /* SubBanksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubBanksViewModel.swift; sourceTree = "<group>"; };
 		2E2C02D126307FF300EDE547 /* SubBankCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubBankCellViewModel.swift; sourceTree = "<group>"; };
 		2E2C02F2263093F800EDE547 /* SwitchCountryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCountryButton.swift; sourceTree = "<group>"; };
-		2E2C02FA2630A1A400EDE547 /* CountrySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectionView.swift; sourceTree = "<group>"; };
-		2E2C03022630A63600EDE547 /* CountryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryButton.swift; sourceTree = "<group>"; };
 		2E2C03072630ACC800EDE547 /* CountrySelectionPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectionPopupViewController.swift; sourceTree = "<group>"; };
 		2E2C030D2630AF9600EDE547 /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
+		2E2C03162630C21A00EDE547 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		2E346B04263015B300EAA5A4 /* ParentBankCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentBankCellViewModel.swift; sourceTree = "<group>"; };
 		2E3C467226302E9E00504C5E /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentBankTableViewHeader.swift; sourceTree = "<group>"; };
@@ -183,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				2E05BB96262F4E52004180CC /* BankListModel.swift */,
+				2E2C03162630C21A00EDE547 /* Country.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -220,8 +219,6 @@
 				2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */,
 				2E2C02C02630724F00EDE547 /* ParentBankCollectionViewCell.swift */,
 				2E2C02F2263093F800EDE547 /* SwitchCountryButton.swift */,
-				2E2C02FA2630A1A400EDE547 /* CountrySelectionView.swift */,
-				2E2C03022630A63600EDE547 /* CountryButton.swift */,
 			);
 			path = Banks;
 			sourceTree = "<group>";
@@ -676,7 +673,6 @@
 			files = (
 				2E05BB6E262F4289004180CC /* ApiClient.swift in Sources */,
 				2E2C02CB26307FBF00EDE547 /* SubBanksViewModel.swift in Sources */,
-				2E2C02FB2630A1A500EDE547 /* CountrySelectionView.swift in Sources */,
 				2E05BBAD262F5D12004180CC /* BanksInfoService.swift in Sources */,
 				2E05BB51262F3045004180CC /* LoginViewController.swift in Sources */,
 				2E05BB86262F4615004180CC /* BankApiClient.swift in Sources */,
@@ -684,7 +680,6 @@
 				2E05BB97262F4E52004180CC /* BankListModel.swift in Sources */,
 				2E05BBB5262F62C6004180CC /* BankCellViewModel.swift in Sources */,
 				2EDBF63A262F2A4E0045AD07 /* MainCoordinator.swift in Sources */,
-				2E2C03032630A63600EDE547 /* CountryButton.swift in Sources */,
 				2E7DB8BD262F239000EE9054 /* AppDelegate.swift in Sources */,
 				2E2C030E2630AF9600EDE547 /* CountryTableViewCell.swift in Sources */,
 				2E05BB7E262F4471004180CC /* GetBankListRequest.swift in Sources */,
@@ -693,6 +688,7 @@
 				2E05BBC5262F665F004180CC /* BankTableViewCell.swift in Sources */,
 				2EDBF635262F29EF0045AD07 /* Coordinator.swift in Sources */,
 				2E2C02C626307D7200EDE547 /* SubBanksViewController.swift in Sources */,
+				2E2C03172630C21A00EDE547 /* Country.swift in Sources */,
 				2E7DB8BF262F239000EE9054 /* SceneDelegate.swift in Sources */,
 				2E3C467326302E9E00504C5E /* Images.swift in Sources */,
 				2E05BB78262F42FB004180CC /* ApiResponse.swift in Sources */,

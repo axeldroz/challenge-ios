@@ -11,9 +11,11 @@ import Foundation
 class BankCellViewModel {
     let name: String
     let logoUrl: String?
+    let countryCode: Country
     
     init(model: BankModel) {
         self.name = model.name
         self.logoUrl = model.logoUrl
+        self.countryCode = model.countryCode
     }
 }
