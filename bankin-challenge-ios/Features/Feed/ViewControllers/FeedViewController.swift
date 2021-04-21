@@ -48,7 +48,7 @@ final class FeedViewController: UIViewController {
     }
     
     private func configureTableView() {
-        tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: "FeedTableViewCell")
+        tableView.register(BankTableViewCell.self, forCellReuseIdentifier: "BankTableViewCell")
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -79,17 +79,31 @@ final class FeedViewController: UIViewController {
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.banks.count
+        return viewModel.banks[section].count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.parentBanks.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 36
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.parentBanks[section].name
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell") as? FeedTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BankTableViewCell") as? BankTableViewCell else {
             return UITableViewCell()
         }
+        let section = indexPath.section
         let row = indexPath.row
-        guard row < viewModel.banks.count else { return UITableViewCell() }
+        guard section < viewModel.banks.count else { return UITableViewCell() }
+        guard row < viewModel.banks[section].count else { return UITableViewCell() }
         
-        let vm = viewModel.banks[row]
+        let vm = viewModel.banks[section][row]
         cell.setData(viewModel: vm)
         return cell
     }

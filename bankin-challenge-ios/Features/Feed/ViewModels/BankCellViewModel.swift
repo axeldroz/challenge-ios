@@ -8,10 +8,12 @@
 
 import Foundation
 
-class FeedCellViewModel {
+class BankCellViewModel {
     let name: String
+    let logoUrl: String?
     
     init(model: BankModel) {
         self.name = model.name
+        self.logoUrl = model.logoUrl
     }
 }

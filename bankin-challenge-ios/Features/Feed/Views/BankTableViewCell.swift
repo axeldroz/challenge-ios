@@ -2,13 +2,13 @@
 //  FeedTableViewCell.swift
 //  bankin-challenge-ios
 //
-//  Created by Axel Droz on 20/04/2021.
+//  Created by Axel Drozdzynski on 20/04/2021.
 //  Copyright © 2021 Axel Drozdzynski. All rights reserved.
 //
 
 import UIKit
 
-class FeedTableViewCell: UITableViewCell {
+class BankTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,7 +18,7 @@ class FeedTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(viewModel: FeedCellViewModel) {
+    func setData(viewModel: BankCellViewModel) {
         textLabel?.text = viewModel.name
     }
 

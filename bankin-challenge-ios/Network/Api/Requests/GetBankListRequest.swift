@@ -25,9 +25,9 @@ struct GetBankListRequest: ApiRequest {
     let client_secret: String
     let limit: Int
     
-    init(clientId: String, clientSecret: String, limit: Int = 20) {
+    init(clientId: String, clientSecret: String, limit: Int?) {
         client_id = clientId
         client_secret = clientSecret
-        self.limit = limit
+        self.limit = limit ?? 20
     }
 }

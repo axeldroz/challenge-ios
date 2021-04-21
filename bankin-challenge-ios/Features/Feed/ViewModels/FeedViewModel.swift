@@ -9,7 +9,8 @@
 import Foundation
 
 protocol FeedViewModelDataProtocol {
-    var banks: [FeedCellViewModel] { get set }
+    var parentBanks: [ParentBankCellViewModel] { get set }
+    var banks: [[BankCellViewModel]] { get set }
 }
 
 protocol FeedViewModelProtocol: FeedViewModelDataProtocol {
@@ -23,7 +24,9 @@ class FeedViewModel: FeedViewModelProtocol {
     private let service: BanksInfoServiceProtocol
     
     var onDataUpdated: (() -> Void)?
-    var banks: [FeedCellViewModel] = []
+    
+    var parentBanks: [ParentBankCellViewModel] = []
+    var banks: [[BankCellViewModel]] = []
     
     required init(service: BanksInfoServiceProtocol = BanksInfoService()) {
         self.service = service
@@ -33,7 +36,7 @@ class FeedViewModel: FeedViewModelProtocol {
         let clientId = "dd6696c38b5148059ad9dedb408d6c84"
         let clientSecret = "56uolm946ktmLTqNMIvfMth4kdiHpiQ5Yo8lT4AFR0aLRZxkxQWaGhLDHXeda6DZ"
         
-        service.fetchBanks(clientId: clientId, clientSecret: clientSecret, limit: nil) { [weak self] (result) in
+        service.fetchBanks(clientId: clientId, clientSecret: clientSecret, limit: 100) { [weak self] (result) in
             switch result {
             case .success(let response):
                 response.resources.forEach { (res) in
@@ -41,11 +44,19 @@ class FeedViewModel: FeedViewModelProtocol {
                         print("bankParent: ", bankParent.name)
                     }
                 }
-                self?.banks = response.resources
-                                .flatMap { $0.parentBanks.flatMap { $0.banks } }
-                                .compactMap({ (bankModel) -> FeedCellViewModel in
-                                    FeedCellViewModel(model: bankModel)
-                                })
+                
+                let parentBanksModels = response.resources.compactMap { $0 }.flatMap{ $0.parentBanks.compactMap { $0 } }.sorted { $0.name < $1.name }
+                
+                self?.parentBanks = parentBanksModels.compactMap { ParentBankCellViewModel(model: $0) }
+                
+                parentBanksModels.forEach({[weak self] (parentBank) in
+                    var arr: [BankCellViewModel] = []
+                    parentBank.banks.forEach { (bank) in
+                        let vm = BankCellViewModel(model: bank)
+                        arr.append(vm)
+                    }
+                    self?.banks.append(arr)
+                })
                 self?.onDataUpdated?()
             break
                 
