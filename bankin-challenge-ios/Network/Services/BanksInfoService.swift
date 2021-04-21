@@ -21,7 +21,7 @@ class BanksInfoService: BanksInfoServiceProtocol {
                     clientSecret: String,
                     limit: Int?,
                     completion: @escaping (Result<GetBankListRequest.Response, GetBankListRequest.ErrorType>) -> Void) {
-        let request = GetBankListRequest(clientId: clientId, clientSecret: clientSecret, limit: 100)
+        let request = GetBankListRequest(clientId: clientId, clientSecret: clientSecret, limit: limit)
         BankApiClient.shared.send(request, completion: completion)
     }
 }

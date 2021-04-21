@@ -1,20 +1,26 @@
 PODS:
   - Alamofire (5.4.1)
   - SAMKeychain (1.5.3)
+  - SDWebImage (5.10.4):
+    - SDWebImage/Core (= 5.10.4)
+  - SDWebImage/Core (5.10.4)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - SAMKeychain
+  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - SAMKeychain
+    - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
+  SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
 
-PODFILE CHECKSUM: 7453a75763008f183ffc226559cd54a43e9a81a7
+PODFILE CHECKSUM: 16b83c895824dfb1d76de0672ae5b2abc4c2beaf
 
 COCOAPODS: 1.10.1

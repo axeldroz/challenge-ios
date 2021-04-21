@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class FeedViewController: UIViewController {
     weak var coordinator: MainCoordinator?
@@ -48,6 +49,7 @@ final class FeedViewController: UIViewController {
     }
     
     private func configureTableView() {
+        tableView.register(ParentBankTableViewHeader.self, forHeaderFooterViewReuseIdentifier: "ParentBankTableViewHeader")
         tableView.register(BankTableViewCell.self, forCellReuseIdentifier: "BankTableViewCell")
         tableView.delegate = self
         tableView.dataSource = self
@@ -87,11 +89,26 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 36
+        return 75
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel.parentBanks[section].name
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ParentBankTableViewHeader") as? ParentBankTableViewHeader else {
+            return nil
+        }
+        guard section < viewModel.parentBanks.count else { return nil }
+        
+        let vm = viewModel.parentBanks[section]
+        view.setData(viewModel: vm)
+        return view
+    }
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return viewModel.parentBanks[section].name
+//    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -106,5 +123,12 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         let vm = viewModel.banks[section][row]
         cell.setData(viewModel: vm)
         return cell
+    }
+}
+
+extension FeedViewController: SDWebImageManagerDelegate {
+    func imageManager(_ imageManager: SDWebImageManager, transformDownloadedImage image: UIImage?, with imageURL: URL?) -> UIImage? {
+        guard let image = image else { return nil }
+        return image.cropAlpha()
     }
 }

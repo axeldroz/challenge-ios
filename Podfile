@@ -8,6 +8,7 @@ target 'bankin-challenge-ios' do
   # Pods for bankin-challenge-ios
   pod 'Alamofire', '~> 5.2'
   pod 'SAMKeychain'
+  pod 'SDWebImage', '~> 5.0'
 
   target 'bankin-challenge-iosTests' do
     inherit! :search_paths

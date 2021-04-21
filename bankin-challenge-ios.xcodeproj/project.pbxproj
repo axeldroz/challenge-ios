@@ -20,6 +20,8 @@
 		2E05BBB5262F62C6004180CC /* BankCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BBB4262F62C6004180CC /* BankCellViewModel.swift */; };
 		2E05BBC5262F665F004180CC /* BankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BBC4262F665F004180CC /* BankTableViewCell.swift */; };
 		2E346B05263015B300EAA5A4 /* ParentBankCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E346B04263015B300EAA5A4 /* ParentBankCellViewModel.swift */; };
+		2E3C467326302E9E00504C5E /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C467226302E9E00504C5E /* Images.swift */; };
+		2E3C467826302FDD00504C5E /* ParentBankTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */; };
 		2E7DB8BD262F239000EE9054 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB8BC262F239000EE9054 /* AppDelegate.swift */; };
 		2E7DB8BF262F239000EE9054 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB8BE262F239000EE9054 /* SceneDelegate.swift */; };
 		2E7DB8C4262F239000EE9054 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DB8C2262F239000EE9054 /* Main.storyboard */; };
@@ -65,6 +67,8 @@
 		2E05BBB4262F62C6004180CC /* BankCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCellViewModel.swift; sourceTree = "<group>"; };
 		2E05BBC4262F665F004180CC /* BankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankTableViewCell.swift; sourceTree = "<group>"; };
 		2E346B04263015B300EAA5A4 /* ParentBankCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentBankCellViewModel.swift; sourceTree = "<group>"; };
+		2E3C467226302E9E00504C5E /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentBankTableViewHeader.swift; sourceTree = "<group>"; };
 		2E7DB8B9262F239000EE9054 /* bankin-challenge-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bankin-challenge-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7DB8BC262F239000EE9054 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E7DB8BE262F239000EE9054 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 		2E7DB8F2262F23D000EE9054 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2E3C467226302E9E00504C5E /* Images.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				2E05BBC4262F665F004180CC /* BankTableViewCell.swift */,
+				2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -614,10 +620,12 @@
 				2E05BBC5262F665F004180CC /* BankTableViewCell.swift in Sources */,
 				2EDBF635262F29EF0045AD07 /* Coordinator.swift in Sources */,
 				2E7DB8BF262F239000EE9054 /* SceneDelegate.swift in Sources */,
+				2E3C467326302E9E00504C5E /* Images.swift in Sources */,
 				2E05BB78262F42FB004180CC /* ApiResponse.swift in Sources */,
 				2E05BB73262F42CB004180CC /* ApiRequest.swift in Sources */,
 				2E05BB59262F3270004180CC /* FeedViewController.swift in Sources */,
 				2E05BBA7262F5CC0004180CC /* FeedViewModel.swift in Sources */,
+				2E3C467826302FDD00504C5E /* ParentBankTableViewHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
