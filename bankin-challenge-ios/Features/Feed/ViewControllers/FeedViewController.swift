@@ -13,11 +13,18 @@ final class FeedViewController: UIViewController {
     weak var coordinator: MainCoordinator?
     var viewModel: FeedViewModelProtocol
     
-    let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
+//    let tableView: UITableView = {
+//        let tableView = UITableView()
+//        tableView.translatesAutoresizingMaskIntoConstraints = false
+//        return tableView
+//    }()
+    
+    let collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
     }()
+    let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
     init(viewModel: FeedViewModelProtocol = FeedViewModel()) {
         self.viewModel = viewModel
@@ -31,6 +38,7 @@ final class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SDWebImageManager.shared.delegate = self
         view.backgroundColor = .systemRed
         configureUI()
         bindViewModel()
@@ -39,8 +47,8 @@ final class FeedViewController: UIViewController {
     
     private func configureUI() {
         configureNavigationBar()
-        configureTableViewUI()
-        configureTableView()
+        configureCollectionViewUI()
+        configureCollectionView()
     }
     
     private func configureNavigationBar() {
@@ -48,20 +56,37 @@ final class FeedViewController: UIViewController {
         navigationItem.rightBarButtonItem = logoutButton
     }
     
-    private func configureTableView() {
-        tableView.register(ParentBankTableViewHeader.self, forHeaderFooterViewReuseIdentifier: "ParentBankTableViewHeader")
-        tableView.register(BankTableViewCell.self, forCellReuseIdentifier: "BankTableViewCell")
-        tableView.delegate = self
-        tableView.dataSource = self
+//    private func configureTableView() {
+//        tableView.register(ParentBankTableViewHeader.self, forHeaderFooterViewReuseIdentifier: "ParentBankTableViewHeader")
+//        tableView.register(BankTableViewCell.self, forCellReuseIdentifier: "BankTableViewCell")
+//        tableView.delegate = self
+//        tableView.dataSource = self
+//    }
+    
+    private func configureCollectionView() {
+        layout.scrollDirection = UICollectionView.ScrollDirection.vertical
+        collectionView.setCollectionViewLayout(layout, animated: true)
+        collectionView.register(ParentBankCollectionViewCell.self, forCellWithReuseIdentifier: "ParentBankCollectionViewCell")
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = UIColor.clear
     }
     
-    private func configureTableViewUI() {
-        view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+    private func configureCollectionViewUI() {
+        view.addSubview(collectionView)
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50.0).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
     }
+    
+//    private func configureTableViewUI() {
+//        view.addSubview(tableView)
+//        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+//        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+//        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+//        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+//    }
     
     @objc func buttonPressed(_ sender: Any?) {
         coordinator?.logout()
@@ -74,8 +99,43 @@ final class FeedViewController: UIViewController {
     private func bindViewModel() {
         viewModel.onDataUpdated = { [weak self] in
             print("UPDATE !!!!!!")
-            self?.tableView.reloadData()
+            //self?.tableView.reloadData()
+            self?.collectionView.reloadData()
         }
+    }
+}
+
+extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.parentBanks.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width / 2.3, height: collectionView.frame.size.width / 1.8)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 30, left: 10, bottom: 10, right: 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 50.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ParentBankCollectionViewCell", for: indexPath) as? ParentBankCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        let row = indexPath.row
+        guard row < viewModel.parentBanks.count else { return UICollectionViewCell() }
+        
+        let vm = viewModel.parentBanks[row]
+        cell.setData(viewModel: vm)
+        return cell
     }
 }
 

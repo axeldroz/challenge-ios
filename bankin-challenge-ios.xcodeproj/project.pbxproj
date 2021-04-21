@@ -19,6 +19,7 @@
 		2E05BBAD262F5D12004180CC /* BanksInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BBAC262F5D12004180CC /* BanksInfoService.swift */; };
 		2E05BBB5262F62C6004180CC /* BankCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BBB4262F62C6004180CC /* BankCellViewModel.swift */; };
 		2E05BBC5262F665F004180CC /* BankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BBC4262F665F004180CC /* BankTableViewCell.swift */; };
+		2E2C02C12630724F00EDE547 /* ParentBankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C02C02630724F00EDE547 /* ParentBankCollectionViewCell.swift */; };
 		2E346B05263015B300EAA5A4 /* ParentBankCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E346B04263015B300EAA5A4 /* ParentBankCellViewModel.swift */; };
 		2E3C467326302E9E00504C5E /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C467226302E9E00504C5E /* Images.swift */; };
 		2E3C467826302FDD00504C5E /* ParentBankTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */; };
@@ -66,6 +67,7 @@
 		2E05BBAC262F5D12004180CC /* BanksInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanksInfoService.swift; sourceTree = "<group>"; };
 		2E05BBB4262F62C6004180CC /* BankCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCellViewModel.swift; sourceTree = "<group>"; };
 		2E05BBC4262F665F004180CC /* BankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankTableViewCell.swift; sourceTree = "<group>"; };
+		2E2C02C02630724F00EDE547 /* ParentBankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentBankCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E346B04263015B300EAA5A4 /* ParentBankCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentBankCellViewModel.swift; sourceTree = "<group>"; };
 		2E3C467226302E9E00504C5E /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentBankTableViewHeader.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 			children = (
 				2E05BBC4262F665F004180CC /* BankTableViewCell.swift */,
 				2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */,
+				2E2C02C02630724F00EDE547 /* ParentBankCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				2E7DB8BD262F239000EE9054 /* AppDelegate.swift in Sources */,
 				2E05BB7E262F4471004180CC /* GetBankListRequest.swift in Sources */,
 				2E346B05263015B300EAA5A4 /* ParentBankCellViewModel.swift in Sources */,
+				2E2C02C12630724F00EDE547 /* ParentBankCollectionViewCell.swift in Sources */,
 				2E05BBC5262F665F004180CC /* BankTableViewCell.swift in Sources */,
 				2EDBF635262F29EF0045AD07 /* Coordinator.swift in Sources */,
 				2E7DB8BF262F239000EE9054 /* SceneDelegate.swift in Sources */,
