@@ -14,6 +14,6 @@ protocol Coordinator {
     
     init(navigationController: UINavigationController)
     func start()
-    func goToFeed()
+    func goBanksPage()
     func logout()
 }

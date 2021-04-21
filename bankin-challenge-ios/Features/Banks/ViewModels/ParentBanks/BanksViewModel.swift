@@ -1,5 +1,5 @@
 //
-//  FeedViewModel.swift
+//  BanksViewModel.swift
 //  bankin-challenge-ios
 //
 //  Created by Axel Drozdzynski on 20/04/2021.
@@ -8,19 +8,19 @@
 
 import Foundation
 
-protocol FeedViewModelDataProtocol {
+protocol BanksViewModelDataProtocol {
     var parentBanks: [ParentBankCellViewModel] { get set }
     var banks: [[BankCellViewModel]] { get set }
 }
 
-protocol FeedViewModelProtocol: FeedViewModelDataProtocol {
+protocol BanksViewModelProtocol: BanksViewModelDataProtocol {
     var onDataUpdated: (() -> Void)? { get set }
     
     init(service: BanksInfoServiceProtocol)
     func fetch()
 }
 
-class FeedViewModel: FeedViewModelProtocol {
+class BanksViewModel: BanksViewModelProtocol {
     private let service: BanksInfoServiceProtocol
     
     var onDataUpdated: (() -> Void)?

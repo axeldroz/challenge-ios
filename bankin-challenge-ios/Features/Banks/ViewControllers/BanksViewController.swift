@@ -1,5 +1,5 @@
 //
-//  FeedViewController.swift
+//  BanksViewController.swift
 //  bankin-challenge-ios
 //
 //  Created by Axel Drozdzynski on 20/04/2021.
@@ -9,9 +9,9 @@
 import UIKit
 import SDWebImage
 
-final class FeedViewController: UIViewController {
+final class BanksViewController: UIViewController {
     weak var coordinator: MainCoordinator?
-    var viewModel: FeedViewModelProtocol
+    var viewModel: BanksViewModelProtocol
     
 //    let tableView: UITableView = {
 //        let tableView = UITableView()
@@ -26,13 +26,13 @@ final class FeedViewController: UIViewController {
     }()
     let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
-    init(viewModel: FeedViewModelProtocol = FeedViewModel()) {
+    init(viewModel: BanksViewModelProtocol = BanksViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        self.viewModel = FeedViewModel()
+        self.viewModel = BanksViewModel()
         super.init(coder: coder)
     }
     
@@ -105,7 +105,7 @@ final class FeedViewController: UIViewController {
     }
 }
 
-extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension BanksViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.parentBanks.count
     }
@@ -143,7 +143,7 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
-extension FeedViewController: SDWebImageManagerDelegate {
+extension BanksViewController: SDWebImageManagerDelegate {
     func imageManager(_ imageManager: SDWebImageManager, transformDownloadedImage image: UIImage?, with imageURL: URL?) -> UIImage? {
         guard let image = image else { return nil }
         return image.cropAlpha()

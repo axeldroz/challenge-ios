@@ -24,12 +24,12 @@ final class MainCoordinator: Coordinator {
             viewController.coordinator = self
             navigationController.pushViewController(viewController, animated: false)
         } else {
-            goToFeed()
+            goBanksPage()
         }
     }
     
-    func goToFeed() {
-        let viewController = FeedViewController()
+    func goBanksPage() {
+        let viewController = BanksViewController()
         viewController.coordinator = self
         navigationController.viewControllers = [viewController]
     }
@@ -43,7 +43,7 @@ final class MainCoordinator: Coordinator {
     }
     
     func showSubBanks(subBanks: [BankCellViewModel]) {
-        guard navigationController.topViewController is FeedViewController else { return }
+        guard navigationController.topViewController is BanksViewController else { return }
         let viewModel = SubBanksViewModel(banks: subBanks)
         let subBankViewController = SubBanksViewController(viewModel: viewModel)
         navigationController.present(subBankViewController, animated: true, completion: nil)

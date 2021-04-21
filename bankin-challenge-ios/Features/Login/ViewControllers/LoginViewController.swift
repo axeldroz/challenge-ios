@@ -47,6 +47,6 @@ final class LoginViewController: UIViewController {
     }
     
     @objc func buttonPressed(_ sender: Any?) {
-        coordinator?.goToFeed()
+        coordinator?.goBanksPage()
     }
 }
