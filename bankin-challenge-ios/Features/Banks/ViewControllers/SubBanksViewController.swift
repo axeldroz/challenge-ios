@@ -35,7 +35,6 @@ final class SubBanksViewController: UIViewController {
     }
     
     private func configureTableView() {
-        tableView.register(ParentBankTableViewHeader.self, forHeaderFooterViewReuseIdentifier: "ParentBankTableViewHeader")
         tableView.register(BankTableViewCell.self, forCellReuseIdentifier: "BankTableViewCell")
         tableView.delegate = self
         tableView.dataSource = self

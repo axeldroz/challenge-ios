@@ -29,7 +29,6 @@
 		2E2C03172630C21A00EDE547 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C03162630C21A00EDE547 /* Country.swift */; };
 		2E346B05263015B300EAA5A4 /* ParentBankCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E346B04263015B300EAA5A4 /* ParentBankCellViewModel.swift */; };
 		2E3C467326302E9E00504C5E /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C467226302E9E00504C5E /* Images.swift */; };
-		2E3C467826302FDD00504C5E /* ParentBankTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */; };
 		2E7DB8BD262F239000EE9054 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB8BC262F239000EE9054 /* AppDelegate.swift */; };
 		2E7DB8BF262F239000EE9054 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB8BE262F239000EE9054 /* SceneDelegate.swift */; };
 		2E7DB8C6262F239200EE9054 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DB8C5262F239200EE9054 /* Assets.xcassets */; };
@@ -83,7 +82,6 @@
 		2E2C03162630C21A00EDE547 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		2E346B04263015B300EAA5A4 /* ParentBankCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentBankCellViewModel.swift; sourceTree = "<group>"; };
 		2E3C467226302E9E00504C5E /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
-		2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentBankTableViewHeader.swift; sourceTree = "<group>"; };
 		2E7DB8B9262F239000EE9054 /* bankin-challenge-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bankin-challenge-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7DB8BC262F239000EE9054 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E7DB8BE262F239000EE9054 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 		2E2C02EC2630936B00EDE547 /* Banks */ = {
 			isa = PBXGroup;
 			children = (
-				2E3C467726302FDD00504C5E /* ParentBankTableViewHeader.swift */,
 				2E2C02C02630724F00EDE547 /* ParentBankCollectionViewCell.swift */,
 				2E2C02F2263093F800EDE547 /* SwitchCountryButton.swift */,
 			);
@@ -693,7 +690,6 @@
 				2E05BBA7262F5CC0004180CC /* BanksViewModel.swift in Sources */,
 				2E2C03082630ACC800EDE547 /* CountrySelectionPopupViewController.swift in Sources */,
 				2E2C02F3263093F800EDE547 /* SwitchCountryButton.swift in Sources */,
-				2E3C467826302FDD00504C5E /* ParentBankTableViewHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
