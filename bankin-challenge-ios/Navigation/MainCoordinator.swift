@@ -48,4 +48,13 @@ final class MainCoordinator: Coordinator {
         let subBankViewController = SubBanksViewController(viewModel: viewModel)
         navigationController.present(subBankViewController, animated: true, completion: nil)
     }
+    
+    func showCountrySelectionPopup() {
+        guard let parentVC = navigationController.topViewController as? BanksViewController else { return }
+        let viewController = CountrySelectionPopupViewController()
+//        viewController.modalPresentationCapturesStatusBarAppearance
+        viewController.parentVC = parentVC
+        viewController.modalPresentationStyle = .overCurrentContext
+        navigationController.present(viewController, animated: true, completion: nil)
+    }
 }

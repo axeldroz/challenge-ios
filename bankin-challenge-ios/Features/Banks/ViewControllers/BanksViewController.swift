@@ -13,18 +13,30 @@ final class BanksViewController: UIViewController {
     weak var coordinator: MainCoordinator?
     var viewModel: BanksViewModelProtocol
     
-//    let tableView: UITableView = {
-//        let tableView = UITableView()
-//        tableView.translatesAutoresizingMaskIntoConstraints = false
-//        return tableView
-//    }()
+    var currentCountry: Country = .france {
+        didSet {
+            switchCountryButton.currentCountry = self.currentCountry
+        }
+    }
     
     let collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-    let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    
+    @objc let switchCountryButton: SwitchCountryButton = {
+        let button = SwitchCountryButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let countrySelectionView: CountrySelectionView = {
+        let view = CountrySelectionView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     init(viewModel: BanksViewModelProtocol = BanksViewModel()) {
         self.viewModel = viewModel
@@ -39,7 +51,7 @@ final class BanksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SDWebImageManager.shared.delegate = self
-        view.backgroundColor = .systemRed
+        view.backgroundColor = .white
         configureUI()
         bindViewModel()
         fetchData()
@@ -49,6 +61,7 @@ final class BanksViewController: UIViewController {
         configureNavigationBar()
         configureCollectionViewUI()
         configureCollectionView()
+        configureSwitchButtonConstraints()
     }
     
     private func configureNavigationBar() {
@@ -74,11 +87,44 @@ final class BanksViewController: UIViewController {
     
     private func configureCollectionViewUI() {
         view.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50.0).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
     }
+    
+    private func configureSwitchButtonConstraints() {
+        view.addSubview(switchCountryButton)
+        //view.addSubview(countrySelectionView)
+        
+        switchCountryButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0).isActive = true
+        switchCountryButton.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+        switchCountryButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40.0).isActive = true
+        switchCountryButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -40.0).isActive = true
+        
+        collectionView.topAnchor.constraint(equalTo: switchCountryButton.bottomAnchor, constant: 10).isActive = true
+        
+//        countrySelectionView.topAnchor.constraint(equalTo: switchCountryButton.bottomAnchor, constant: 2).isActive = true
+//        let heightConstraint = countrySelectionView.heightAnchor.constraint(equalToConstant: 0.0)
+//        heightConstraint.isActive = true
+//        countrySelectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40.0).isActive = true
+//        countrySelectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -40.0).isActive = true
+        
+//        countrySelectionView.backgroundColor = .systemRed
+        //countrySelectionView.heightConstraint = heightConstraint
+        //countrySelectionView.hide()
+        
+        switchCountryButton.addTarget(self, action: #selector(switchCountryButtonPressed(_:)), for: .touchUpInside)
+    }
+    
+    @objc func switchCountryButtonPressed(_ sender: Any?) {
+//        if (countrySelectionView.isShowing) {
+//            countrySelectionView.hide()
+//        } else {
+//            countrySelectionView.show()
+//        }
+        coordinator?.showCountrySelectionPopup()
+    }
+    
     
 //    private func configureTableViewUI() {
 //        view.addSubview(tableView)
