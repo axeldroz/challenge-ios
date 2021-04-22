@@ -17,11 +17,12 @@ final class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let isLogged = false
+        let isLogged = UserDefaults.standard.bool(forKey: "isLogged") ?? false
         
         if (!isLogged) {
             let viewController = LoginViewController()
             viewController.coordinator = self
+            navigationController.isNavigationBarHidden = true
             navigationController.pushViewController(viewController, animated: false)
         } else {
             goBanksPage()
@@ -29,15 +30,21 @@ final class MainCoordinator: Coordinator {
     }
     
     func goBanksPage() {
+        if navigationController.topViewController is LoginViewController {
+            UserDefaults.standard.set(true, forKey: "isLogged")
+        }
         let viewController = BanksViewController()
         viewController.coordinator = self
+        navigationController.isNavigationBarHidden = false
         navigationController.viewControllers = [viewController]
     }
     
     func logout() {
         if (!(navigationController.topViewController is LoginViewController)) {
+            UserDefaults.standard.set(false, forKey: "isLogged")
             let viewController = LoginViewController()
             viewController.coordinator = self
+            navigationController.isNavigationBarHidden = true
             navigationController.viewControllers = [viewController]
         }
     }

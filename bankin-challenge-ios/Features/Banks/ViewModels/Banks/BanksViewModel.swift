@@ -16,6 +16,7 @@ protocol BanksViewModelDataProtocol {
 
 protocol BanksViewModelProtocol: BanksViewModelDataProtocol {
     var onDataUpdated: (() -> Void)? { get set }
+    var onFilterChanged: (() -> Void)? { get set }
     
     init(service: BanksInfoServiceProtocol)
     func fetch()
@@ -25,6 +26,7 @@ class BanksViewModel: BanksViewModelProtocol {
     private let service: BanksInfoServiceProtocol
     
     var onDataUpdated: (() -> Void)?
+    var onFilterChanged: (() -> Void)?
     
     private(set) var allParentBanks: [ParentBankCellViewModel] = []
     private(set) var allSubBanks: [[SubBankCellViewModel]] = []
@@ -85,6 +87,6 @@ class BanksViewModel: BanksViewModelProtocol {
     private func countryChanged() {
         parentBanks = allParentBanks.filter{[weak self] in $0.countryCode == self?.countryFilter }
         subBanks = allSubBanks.filter{[weak self] in $0.first?.countryCode ?? .FR == self?.countryFilter }
-        onDataUpdated?()
+        (onFilterChanged ?? onDataUpdated)?()
     }
 }

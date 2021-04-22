@@ -33,6 +33,13 @@ final class BanksViewController: UIViewController {
         return button
     }()
     
+    let loader: UIActivityIndicatorView = {
+        let loader = UIActivityIndicatorView(style: .large)
+        loader.color = .gray
+        loader.hidesWhenStopped = true
+        return loader
+    }()
+    
     init(viewModel: BanksViewModelProtocol = BanksViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -45,7 +52,6 @@ final class BanksViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SDWebImageManager.shared.delegate = self
         view.backgroundColor = .secondarySystemBackground
         configureUI()
         bindViewModel()
@@ -74,8 +80,9 @@ final class BanksViewController: UIViewController {
     }
     
     private func configureCollectionViewUI() {
+        collectionView.backgroundView = loader
         view.addSubview(collectionView)
-        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
     }
@@ -101,13 +108,27 @@ final class BanksViewController: UIViewController {
     }
     
     func fetchData() {
+        startLoading()
         viewModel.fetch()
     }
     
     private func bindViewModel() {
         viewModel.onDataUpdated = { [weak self] in
+            self?.stopLoading()
             self?.collectionView.reloadData()
         }
+        viewModel.onFilterChanged = { [weak self] in
+            self?.collectionView.reloadData()
+            self?.collectionView.setContentOffset(CGPoint(x: 0,y: 0), animated: false)
+        }
+    }
+    
+    func startLoading() {
+        loader.startAnimating()
+    }
+
+    func stopLoading() {
+        loader.stopAnimating()
     }
 }
 
@@ -153,12 +174,5 @@ extension BanksViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.item < viewModel.subBanks.count else { return }
         coordinator?.showSubBanks(subBanks: viewModel.subBanks[indexPath.item])
-    }
-}
-
-extension BanksViewController: SDWebImageManagerDelegate {
-    func imageManager(_ imageManager: SDWebImageManager, transformDownloadedImage image: UIImage?, with imageURL: URL?) -> UIImage? {
-        guard let image = image else { return nil }
-        return image.cropAlpha()
     }
 }
