@@ -11,7 +11,6 @@
 		2E05BB59262F3270004180CC /* BanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB58262F3270004180CC /* BanksViewController.swift */; };
 		2E05BB6E262F4289004180CC /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB6D262F4289004180CC /* ApiClient.swift */; };
 		2E05BB73262F42CB004180CC /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB72262F42CB004180CC /* ApiRequest.swift */; };
-		2E05BB78262F42FB004180CC /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB77262F42FB004180CC /* ApiResponse.swift */; };
 		2E05BB7E262F4471004180CC /* GetBankListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB7D262F4471004180CC /* GetBankListRequest.swift */; };
 		2E05BB86262F4615004180CC /* BankApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB85262F4615004180CC /* BankApiClient.swift */; };
 		2E05BB97262F4E52004180CC /* BankListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BB96262F4E52004180CC /* BankListModel.swift */; };
@@ -63,7 +62,6 @@
 		2E05BB58262F3270004180CC /* BanksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanksViewController.swift; sourceTree = "<group>"; };
 		2E05BB6D262F4289004180CC /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		2E05BB72262F42CB004180CC /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
-		2E05BB77262F42FB004180CC /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		2E05BB7D262F4471004180CC /* GetBankListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBankListRequest.swift; sourceTree = "<group>"; };
 		2E05BB85262F4615004180CC /* BankApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankApiClient.swift; sourceTree = "<group>"; };
 		2E05BB96262F4E52004180CC /* BankListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankListModel.swift; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 			children = (
 				2E05BB95262F4BFF004180CC /* Models */,
 				2E05BB7C262F4370004180CC /* Requests */,
-				2E05BB77262F42FB004180CC /* ApiResponse.swift */,
 				2E05BB72262F42CB004180CC /* ApiRequest.swift */,
 			);
 			path = Api;
@@ -672,7 +669,6 @@
 				2E2C03172630C21A00EDE547 /* Country.swift in Sources */,
 				2E7DB8BF262F239000EE9054 /* SceneDelegate.swift in Sources */,
 				2E3C467326302E9E00504C5E /* Images.swift in Sources */,
-				2E05BB78262F42FB004180CC /* ApiResponse.swift in Sources */,
 				2E05BB73262F42CB004180CC /* ApiRequest.swift in Sources */,
 				2E05BB59262F3270004180CC /* BanksViewController.swift in Sources */,
 				2E05BBA7262F5CC0004180CC /* BanksViewModel.swift in Sources */,
@@ -857,7 +853,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.axeldroz.bankin-challenge-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -878,7 +874,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.axeldroz.bankin-challenge-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
