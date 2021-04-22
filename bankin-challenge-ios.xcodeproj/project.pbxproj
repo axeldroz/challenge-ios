@@ -257,7 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				2E7DB8EF262F23A900EE9054 /* Base */,
-				2EDBF625262F28440045AD07 /* Managers */,
 				2EDBF626262F28E20045AD07 /* Navigation */,
 				2E7DB8F0262F23B300EE9054 /* Features */,
 				2E7DB8F1262F23BF00EE9054 /* Network */,
@@ -392,13 +391,6 @@
 			children = (
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		2EDBF625262F28440045AD07 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Managers;
 			sourceTree = "<group>";
 		};
 		2EDBF626262F28E20045AD07 /* Navigation */ = {
