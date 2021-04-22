@@ -26,8 +26,8 @@ class BanksViewModel: BanksViewModelProtocol {
     
     var onDataUpdated: (() -> Void)?
     
-    private var allParentBanks: [ParentBankCellViewModel] = []
-    private var allSubBanks: [[BankCellViewModel]] = []
+    private(set) var allParentBanks: [ParentBankCellViewModel] = []
+    private(set) var allSubBanks: [[BankCellViewModel]] = []
     
     var parentBanks: [ParentBankCellViewModel] = []
     var subBanks: [[BankCellViewModel]] = []

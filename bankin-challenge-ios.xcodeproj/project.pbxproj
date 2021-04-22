@@ -19,6 +19,7 @@
 		2E05BBAD262F5D12004180CC /* BanksInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BBAC262F5D12004180CC /* BanksInfoService.swift */; };
 		2E05BBB5262F62C6004180CC /* BankCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BBB4262F62C6004180CC /* BankCellViewModel.swift */; };
 		2E05BBC5262F665F004180CC /* BankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E05BBC4262F665F004180CC /* BankTableViewCell.swift */; };
+		2E11B58526317793000D625E /* BanksViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E11B58426317793000D625E /* BanksViewModelTests.swift */; };
 		2E2C02C12630724F00EDE547 /* ParentBankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C02C02630724F00EDE547 /* ParentBankCollectionViewCell.swift */; };
 		2E2C02C626307D7200EDE547 /* SubBanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C02C526307D7200EDE547 /* SubBanksViewController.swift */; };
 		2E2C02CB26307FBF00EDE547 /* SubBanksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C02CA26307FBF00EDE547 /* SubBanksViewModel.swift */; };
@@ -72,6 +73,7 @@
 		2E05BBAC262F5D12004180CC /* BanksInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanksInfoService.swift; sourceTree = "<group>"; };
 		2E05BBB4262F62C6004180CC /* BankCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCellViewModel.swift; sourceTree = "<group>"; };
 		2E05BBC4262F665F004180CC /* BankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankTableViewCell.swift; sourceTree = "<group>"; };
+		2E11B58426317793000D625E /* BanksViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanksViewModelTests.swift; sourceTree = "<group>"; };
 		2E2C02C02630724F00EDE547 /* ParentBankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentBankCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E2C02C526307D7200EDE547 /* SubBanksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubBanksViewController.swift; sourceTree = "<group>"; };
 		2E2C02CA26307FBF00EDE547 /* SubBanksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubBanksViewModel.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 		2E7DB8D2262F239200EE9054 /* bankin-challenge-iosTests */ = {
 			isa = PBXGroup;
 			children = (
+				2E11B58426317793000D625E /* BanksViewModelTests.swift */,
 				2E7DB8D3262F239200EE9054 /* bankin_challenge_iosTests.swift */,
 				2E7DB8D5262F239200EE9054 /* Info.plist */,
 			);
@@ -697,6 +700,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E11B58526317793000D625E /* BanksViewModelTests.swift in Sources */,
 				2E7DB8D4262F239200EE9054 /* bankin_challenge_iosTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
