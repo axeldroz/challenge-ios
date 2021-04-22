@@ -9,17 +9,17 @@
 import Foundation
 
 protocol SubBanksViewModelDataProtocol {
-    var banks: [BankCellViewModel] { get set }
+    var banks: [SubBankCellViewModel] { get set }
 }
 
 protocol SubBanksViewModelProtocol: SubBanksViewModelDataProtocol {
-    init(banks: [BankCellViewModel])
+    init(banks: [SubBankCellViewModel])
 }
 
 class SubBanksViewModel: SubBanksViewModelProtocol {
-    var banks: [BankCellViewModel]
+    var banks: [SubBankCellViewModel]
     
-    required init(banks: [BankCellViewModel]) {
+    required init(banks: [SubBankCellViewModel]) {
         self.banks = banks
     }
 }

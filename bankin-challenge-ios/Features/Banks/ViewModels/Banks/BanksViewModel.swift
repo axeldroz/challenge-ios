@@ -10,7 +10,7 @@ import Foundation
 
 protocol BanksViewModelDataProtocol {
     var parentBanks: [ParentBankCellViewModel] { get set }
-    var subBanks: [[BankCellViewModel]] { get set }
+    var subBanks: [[SubBankCellViewModel]] { get set }
     var countryFilter: Country { get set }
 }
 
@@ -27,10 +27,10 @@ class BanksViewModel: BanksViewModelProtocol {
     var onDataUpdated: (() -> Void)?
     
     private(set) var allParentBanks: [ParentBankCellViewModel] = []
-    private(set) var allSubBanks: [[BankCellViewModel]] = []
+    private(set) var allSubBanks: [[SubBankCellViewModel]] = []
     
     var parentBanks: [ParentBankCellViewModel] = []
-    var subBanks: [[BankCellViewModel]] = []
+    var subBanks: [[SubBankCellViewModel]] = []
     
     var countryFilter: Country = .FR {
         didSet {
@@ -61,11 +61,11 @@ class BanksViewModel: BanksViewModelProtocol {
                 self?.allParentBanks = parentBanksArr
                 self?.parentBanks = parentBanksArr.filter{[weak self] in $0.countryCode == self?.countryFilter }
                 
-                var subBanksArr: [[BankCellViewModel]] = []
+                var subBanksArr: [[SubBankCellViewModel]] = []
                 parentBanksModels.forEach({ (parentBank) in
-                    var arr: [BankCellViewModel] = []
+                    var arr: [SubBankCellViewModel] = []
                     parentBank.banks.forEach { (bank) in
-                        let vm = BankCellViewModel(model: bank)
+                        let vm = SubBankCellViewModel(model: bank)
                         arr.append(vm)
                     }
                     subBanksArr.append(arr)

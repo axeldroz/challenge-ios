@@ -36,7 +36,7 @@ class BankTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(viewModel: BankCellViewModel) {
+    func setData(viewModel: SubBankCellViewModel) {
         textLabel?.text = viewModel.name
     }
 }

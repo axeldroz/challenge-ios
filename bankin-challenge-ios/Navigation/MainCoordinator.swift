@@ -42,7 +42,7 @@ final class MainCoordinator: Coordinator {
         }
     }
     
-    func showSubBanks(subBanks: [BankCellViewModel]) {
+    func showSubBanks(subBanks: [SubBankCellViewModel]) {
         guard navigationController.topViewController is BanksViewController else { return }
         let viewModel = SubBanksViewModel(banks: subBanks)
         let subBankViewController = SubBanksViewController(viewModel: viewModel)
