@@ -37,12 +37,12 @@ final class BankApiClient: ApiClient {
                             completion(.success(result) )
                         } catch let errorResponse {
                             print("error: \(errorResponse.localizedDescription)")
-                            completion(.failure(AFError.ResponseValidationFailureReason.missingContentType as! T.ErrorType))
+                            completion(.failure(ApiError.decoding as! T.ErrorType))
                         }
                     break
                         
                     case .failure(let errorResponse):
-                        completion(.failure(errorResponse as! T.ErrorType))
+                        completion(.failure(ApiError.client(message: errorResponse.localizedDescription) as! T.ErrorType))
                     break
                     }}
     }

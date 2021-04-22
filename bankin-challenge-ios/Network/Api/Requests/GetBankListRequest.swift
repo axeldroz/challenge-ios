@@ -11,7 +11,7 @@ import Alamofire // for HTTPMethod type
 
 struct GetBankListRequest: ApiRequest {
     typealias Response = BankListModel
-    typealias ErrorType = AFError
+    typealias ErrorType = ApiError
     
     var resourceName: String {
         return "banks"

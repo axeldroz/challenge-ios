@@ -23,3 +23,10 @@ extension ApiRequest {
         return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
 }
+
+enum ApiError: Error {
+    case encoding
+    case decoding
+    case server(message: String)
+    case client(message: String)
+}
