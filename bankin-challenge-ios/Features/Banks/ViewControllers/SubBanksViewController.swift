@@ -29,6 +29,7 @@ final class SubBanksViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closePressed(_:)))
         view.backgroundColor = UIColor.white
         configureTableView()
         configureTableViewUI()
@@ -46,6 +47,10 @@ final class SubBanksViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+    }
+    
+    @objc func closePressed(_ sender: Any?) {
+        dismiss(animated: true, completion: nil)
     }
 }
 

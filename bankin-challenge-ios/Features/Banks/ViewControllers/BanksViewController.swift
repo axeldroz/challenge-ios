@@ -16,7 +16,7 @@ final class BanksViewController: UIViewController {
     var currentCountry: Country = .FR {
         didSet {
             switchCountryButton.currentCountry = self.currentCountry
-            collectionView.reloadData()
+            viewModel.countryFilter = self.currentCountry
         }
     }
     
@@ -46,7 +46,7 @@ final class BanksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SDWebImageManager.shared.delegate = self
-        view.backgroundColor = .white
+        view.backgroundColor = .secondarySystemBackground
         configureUI()
         bindViewModel()
         fetchData()
@@ -64,13 +64,6 @@ final class BanksViewController: UIViewController {
         navigationItem.rightBarButtonItem = logoutButton
     }
     
-//    private func configureTableView() {
-//        tableView.register(ParentBankTableViewHeader.self, forHeaderFooterViewReuseIdentifier: "ParentBankTableViewHeader")
-//        tableView.register(BankTableViewCell.self, forCellReuseIdentifier: "BankTableViewCell")
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//    }
-    
     private func configureCollectionView() {
         layout.scrollDirection = UICollectionView.ScrollDirection.vertical
         collectionView.setCollectionViewLayout(layout, animated: true)
@@ -83,51 +76,25 @@ final class BanksViewController: UIViewController {
     private func configureCollectionViewUI() {
         view.addSubview(collectionView)
         collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
     }
     
     private func configureSwitchButtonConstraints() {
         view.addSubview(switchCountryButton)
-        //view.addSubview(countrySelectionView)
         
         switchCountryButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0).isActive = true
         switchCountryButton.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         switchCountryButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40.0).isActive = true
         switchCountryButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -40.0).isActive = true
-        
-        collectionView.topAnchor.constraint(equalTo: switchCountryButton.bottomAnchor, constant: 10).isActive = true
-        
-//        countrySelectionView.topAnchor.constraint(equalTo: switchCountryButton.bottomAnchor, constant: 2).isActive = true
-//        let heightConstraint = countrySelectionView.heightAnchor.constraint(equalToConstant: 0.0)
-//        heightConstraint.isActive = true
-//        countrySelectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40.0).isActive = true
-//        countrySelectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -40.0).isActive = true
-        
-//        countrySelectionView.backgroundColor = .systemRed
-        //countrySelectionView.heightConstraint = heightConstraint
-        //countrySelectionView.hide()
+        collectionView.topAnchor.constraint(equalTo: switchCountryButton.bottomAnchor, constant: 20).isActive = true
         
         switchCountryButton.addTarget(self, action: #selector(switchCountryButtonPressed(_:)), for: .touchUpInside)
     }
     
     @objc func switchCountryButtonPressed(_ sender: Any?) {
-//        if (countrySelectionView.isShowing) {
-//            countrySelectionView.hide()
-//        } else {
-//            countrySelectionView.show()
-//        }
         coordinator?.showCountrySelectionPopup()
     }
-    
-    
-//    private func configureTableViewUI() {
-//        view.addSubview(tableView)
-//        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-//        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-//        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-//        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-//    }
     
     @objc func buttonPressed(_ sender: Any?) {
         coordinator?.logout()
@@ -139,8 +106,6 @@ final class BanksViewController: UIViewController {
     
     private func bindViewModel() {
         viewModel.onDataUpdated = { [weak self] in
-            print("UPDATE !!!!!!")
-            //self?.tableView.reloadData()
             self?.collectionView.reloadData()
         }
     }
@@ -148,19 +113,24 @@ final class BanksViewController: UIViewController {
 
 extension BanksViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.parentBanks.filter{ $0.countryCode == currentCountry }.count
+        return viewModel.parentBanks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width / 2.3, height: collectionView.frame.size.width / 1.8)
+        return CGSize(width: collectionView.frame.size.width * 0.36, height: collectionView.frame.size.width * 0.36 + 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 30, left: 10, bottom: 10, right: 10)
+        let addSomeSeparation: CGFloat = 10.0
+        let collectionViewWidth: CGFloat = collectionView.frame.size.width
+        let totalItemsWidth: CGFloat = collectionViewWidth * 0.36 * 2
+        let totalMargin = collectionViewWidth - totalItemsWidth - 10.0 - addSomeSeparation
+        let margin: CGFloat = totalMargin / 2.0
+        return UIEdgeInsets(top: 20.0, left: margin, bottom: 10.0, right: margin)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 50.0
+        return 20.0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -172,7 +142,7 @@ extension BanksViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return UICollectionViewCell()
         }
         let row = indexPath.row
-        let viewModels = viewModel.parentBanks.filter{ $0.countryCode == currentCountry }
+        let viewModels = viewModel.parentBanks
         guard row < viewModels.count else { return UICollectionViewCell() }
         
         let vm = viewModels[row]
@@ -181,8 +151,8 @@ extension BanksViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let viewModels = viewModel.banks.filter{ $0.first?.countryCode ?? .FR == currentCountry }
-        coordinator?.showSubBanks(subBanks: viewModels[indexPath.item])
+        guard indexPath.item < viewModel.subBanks.count else { return }
+        coordinator?.showSubBanks(subBanks: viewModel.subBanks[indexPath.item])
     }
 }
 

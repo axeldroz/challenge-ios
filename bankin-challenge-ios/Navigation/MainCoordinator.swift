@@ -46,7 +46,8 @@ final class MainCoordinator: Coordinator {
         guard navigationController.topViewController is BanksViewController else { return }
         let viewModel = SubBanksViewModel(banks: subBanks)
         let subBankViewController = SubBanksViewController(viewModel: viewModel)
-        navigationController.present(subBankViewController, animated: true, completion: nil)
+        let nc = UINavigationController(rootViewController: subBankViewController)
+        navigationController.present(nc, animated: true, completion: nil)
     }
     
     func showCountrySelectionPopup() {

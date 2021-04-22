@@ -10,7 +10,8 @@ import Foundation
 
 protocol BanksViewModelDataProtocol {
     var parentBanks: [ParentBankCellViewModel] { get set }
-    var banks: [[BankCellViewModel]] { get set }
+    var subBanks: [[BankCellViewModel]] { get set }
+    var countryFilter: Country { get set }
 }
 
 protocol BanksViewModelProtocol: BanksViewModelDataProtocol {
@@ -25,8 +26,17 @@ class BanksViewModel: BanksViewModelProtocol {
     
     var onDataUpdated: (() -> Void)?
     
+    private var allParentBanks: [ParentBankCellViewModel] = []
+    private var allSubBanks: [[BankCellViewModel]] = []
+    
     var parentBanks: [ParentBankCellViewModel] = []
-    var banks: [[BankCellViewModel]] = []
+    var subBanks: [[BankCellViewModel]] = []
+    
+    var countryFilter: Country = .FR {
+        didSet {
+            countryChanged()
+        }
+    }
     
     required init(service: BanksInfoServiceProtocol = BanksInfoService()) {
         self.service = service
@@ -47,16 +57,21 @@ class BanksViewModel: BanksViewModelProtocol {
                 
                 let parentBanksModels = response.resources.compactMap { $0 }.flatMap{ $0.parentBanks.compactMap { $0 } }.sorted { $0.name < $1.name }
                 
-                self?.parentBanks = parentBanksModels.compactMap { ParentBankCellViewModel(model: $0) }
+                let parentBanksArr = parentBanksModels.compactMap { ParentBankCellViewModel(model: $0) }
+                self?.allParentBanks = parentBanksArr
+                self?.parentBanks = parentBanksArr.filter{[weak self] in $0.countryCode == self?.countryFilter }
                 
-                parentBanksModels.forEach({[weak self] (parentBank) in
+                var subBanksArr: [[BankCellViewModel]] = []
+                parentBanksModels.forEach({ (parentBank) in
                     var arr: [BankCellViewModel] = []
                     parentBank.banks.forEach { (bank) in
                         let vm = BankCellViewModel(model: bank)
                         arr.append(vm)
                     }
-                    self?.banks.append(arr)
+                    subBanksArr.append(arr)
                 })
+                self?.allSubBanks = subBanksArr
+                self?.subBanks = subBanksArr.filter{[weak self] in $0.first?.countryCode ?? .FR == self?.countryFilter }
                 self?.onDataUpdated?()
             break
                 
@@ -65,5 +80,11 @@ class BanksViewModel: BanksViewModelProtocol {
             break
             }
         }
+    }
+    
+    private func countryChanged() {
+        parentBanks = allParentBanks.filter{[weak self] in $0.countryCode == self?.countryFilter }
+        subBanks = allSubBanks.filter{[weak self] in $0.first?.countryCode ?? .FR == self?.countryFilter }
+        onDataUpdated?()
     }
 }

@@ -31,14 +31,13 @@ final class SwitchCountryButton: UIButton {
     private func configureUI() {
         layoutIfNeeded()
         setTitle(currentCountry.toFullName().capitalized, for: .normal)
-        setTitleColor(.black, for: .normal)
+        setTitleColor(.label, for: .normal)
         backgroundColor = .clear
-        //layer.cornerRadius = 12
         
         // bottom border
         layer.borderWidth = 0.0
         layer.borderColor = UIColor.clear.cgColor
-        borderLayer.backgroundColor = UIColor.black.cgColor
+        borderLayer.backgroundColor = UIColor.label.cgColor
         layer.addSublayer(borderLayer)
         
         // images

@@ -49,13 +49,21 @@ class ParentBankCollectionViewCell: UICollectionViewCell {
     }
     
     func configureUI() {
-        contentView.backgroundColor = .yellow
+        contentView.backgroundColor = .tertiarySystemBackground
         nameLabel.numberOfLines = 2
         nameLabel.backgroundColor = .clear
         nameLabel.textAlignment = .center
         logoImageView.backgroundColor = .clear
         logoImageView.contentMode = .scaleAspectFit
         contentView.layer.cornerRadius = 12
+        contentView.layer.borderColor = UIColor.clear.cgColor
+        if traitCollection.userInterfaceStyle == .dark {
+            contentView.layer.shadowColor = UIColor.black.cgColor
+        } else {
+            contentView.layer.shadowColor = UIColor.gray.cgColor
+        }
+        contentView.layer.shadowOpacity = 0.5
+        contentView.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
     }
     
     func configureConstraints() {
